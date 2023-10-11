@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block title %}
+    {{ titulo }} Livro
+{% endblock title %}
+
+{% block content %}
+    <form method="post">
+        <h1>{{ titulo }} Livro</h1>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{{ botao }}">
+    </form>
+{% endblock content %}

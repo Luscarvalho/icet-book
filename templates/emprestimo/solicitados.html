@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Empréstimos{% endblock %}
+
+{% block content %}
+    <section class="search-emp">
+        <label for="search-emp"></label><input type="text" id="search-emp" onkeyup="searchFilm()" placeholder="Pesquisar por nome...">
+    </section>
+    <table id="myTable">
+        <thead>
+        <tr>
+            <th>Quem emprestou</th>
+            <th>Livro</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for emprestimo in emprestimos %}
+            {% if emprestimo.lender %}
+                <tr>
+                    <td> {{ emprestimo.borrower.first_name }} {{ emprestimo.borrower.last_name }} </td>
+                    <td>{{ emprestimo.book.nome }} - {{ emprestimo.book.autor }}</td>
+                    <td>{{ emprestimo.get_status_display }}</td>
+                    <td>
+                        {% if emprestimo.status == 'pending' %}
+                            <a href="{% url 'aceitar-emprestimo' emprestimo.pk %}">Aceitar</a>
+                            <a href="{% url 'recusar-emprestimo' emprestimo.pk %}">Recusar</a>
+                        {% elif emprestimo.status == 'approved' and emprestimo.book.status == 'indisp' %}
+                            <a href="{% url 'recusar-emprestimo' emprestimo.pk %}">Negar</a>
+                        {% elif emprestimo.status == 'denied' %}
+                            <a href="{% url 'aceitar-emprestimo' emprestimo.pk %}">Aprovar</a>
+                        {% elif emprestimo.status == 'approved' and emprestimo.book.status == 'devol' %}
+                            <a href="{% url 'aceitar-devolucao' emprestimo.pk %}">Aceitar Devolução</a>
+                        {% elif emprestimo.status == 'concluded' %}
+                            <a href="{% url 'deletar-emprestimo' emprestimo.pk %}">Apagar Empréstimo</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

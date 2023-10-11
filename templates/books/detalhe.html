@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block title %}
+    Livro
+{% endblock %}
+{% block content %}
+    <section class="detail">
+        <h1>Livro: {{ livro.nome }} - {{ livro.autor }}</h1>
+        <h2>Dono: {{ livro.usuario.first_name }} {{ livro.usuario.last_name }}</h2>
+        <h3>Aluno que empresta: {{ user.first_name }} {{ user.last_name }}</h3>
+        <a href="{% url 'emprestar_livro' pk=livro.pk %}">Confirmar emprestimo</a>
+    </section>
+{% endblock %}

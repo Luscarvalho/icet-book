@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+</head>
+
+<body>
+    <section class="left-login">
+        <img src="{% static 'img/login.svg' %}" alt="Login">
+    </section>
+    <section class="right-login">
+        <form class="card" method="post">
+            <h1>Login</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Login">
+            <a class="cad" href="{% url 'cadastro' %}">Fazer Cadastro</a>
+        </form>
+    </section>
+</body>
+
+</html>

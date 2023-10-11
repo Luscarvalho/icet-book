@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+    {% block style %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    {% endblock %}
+</head>
+<body>
+<header class="menu">
+    <a class="logo" href="{% url 'home' %}"><b>ReadConnect</b></a>
+    <ul>
+        <div class="dropdown right" style="float:right;">
+            <p class="dropbtn">{{ user.first_name }}</p>
+            <div class="dropdown-content">
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <p class="dropbtn">Empréstimos</p>
+            <div class="dropdown-content">
+                <a href="{% url 'meus-emprestimo' %}">Meus empréstimos</a>
+                <a href="{% url 'emprestimo' %}">Solicitados para mim</a>
+            </div>
+        </div>
+        <li>
+            <a href="{% url 'my-livros-list' %}">Meus Livros</a>
+        </li>
+    </ul>
+</header>
+<div class="container">
+    {% block content %} {% endblock %}
+</div>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css"/>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

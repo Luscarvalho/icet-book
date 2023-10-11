@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block title %}Apagar Empréstimo{% endblock %}
+
+{% block content %}
+    <section class="detail">
+        <h1>Apagar Empréstimo</h1>
+        <p>Você tem certeza que deseja deletar o emprestimo feito por <b>{{ emprestimo.borrower }}</b>
+            do livro <b>{{ emprestimo.book.nome }}</b>?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirmar">
+        </form>
+    </section>
+{% endblock %}

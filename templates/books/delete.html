@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}"/>
+{% endblock %}
+
+{% block title %}Apagar Livro{% endblock %}
+
+{% block content %}
+    <section class="detail">
+        <h1>Apagar Livro</h1>
+        <p>Você tem certeza que deseja deletar "{{ livro.nome }}"?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirmar">
+        </form>
+    </section>
+{% endblock %}

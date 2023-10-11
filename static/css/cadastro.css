@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --color-main: #113946;
+    --color-black: #14181c;
+    --color-white: #E5E7EB;
+    --color-btn: #BCA37F;
+    --color-orange: #FF7F11;
+}
+
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Main */
+
+body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-main);
+}
+
+/* Right Login */
+
+.card {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 30px;
+}
+
+.card h1,
+.card p,
+.card a {
+    color: var(--color-white);
+}
+
+.card h1 {
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.card p,
+.card a {
+    margin-top: 10px;
+    text-decoration: none;
+
+}
+
+.card p label {
+    margin-bottom: 5px;
+}
+
+.card input {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+}
+
+select {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    width: 100%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+}
+
+.card input[type="submit"] {
+    background: var(--color-btn);
+    font-weight: bolder;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 15px;
+    border: none;
+    color: var(--color-white);
+}
+
+.card a {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cad,
+.login {
+    font-weight: bolder;
+}
+
+.errorlist {
+    color: var(--color-orange) !important;
+    margin-top: 10px;
+}

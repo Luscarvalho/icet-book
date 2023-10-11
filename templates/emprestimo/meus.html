@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Empréstimos{% endblock %}
+
+{% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <section class="search-emp">
+        <input type="text" id="search-emp" onkeyup="searchFilm()" placeholder="Pesquisar por nome...">
+    </section>
+    <table id="myTable">
+        <thead>
+        <tr>
+            <th>Dono</th>
+            <th>Livro</th>
+            <th>Autor</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for emprestimo in emprestimos %}
+            <tr>
+                <td>{{ emprestimo.lender.first_name }} {{ emprestimo.lender.last_name }}</td>
+                <td>{{ emprestimo.book.nome }}</td>
+                <td>{{ emprestimo.book.autor }}</td>
+                <td>{{ emprestimo.get_status_display }}</td>
+                <td>
+                    {% if emprestimo.status == 'pending' or emprestimo.book.status == 'devol' %}
+                        Aguarde
+                    {% elif emprestimo.status == 'approved' %}
+                        <a href="{% url 'devolver-emprestimo' emprestimo.pk %}">Devolver</a>
+                    {% elif emprestimo.status == 'denied' or emprestimo.status == 'concluded' %}
+                        <a href="{% url 'deletar-emprestimo' emprestimo.pk %}">Apagar Empréstimo</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

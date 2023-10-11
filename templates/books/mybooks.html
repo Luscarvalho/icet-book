@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Livros{% endblock %}
+
+{% block content %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <section class="search">
+        <input type="text" id="search" onkeyup="searchFilm()" placeholder="Pesquisar por nome...">
+        <a class="create" href="{% url 'livros-create' %}">Cadastrar</a>
+    </section>
+    <table id="myTable">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Autor</th>
+            <th>Status</th>
+            <th>Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for livro in object_list %}
+            <tr>
+                <td>{{ livro.nome }}</td>
+                <td>{{ livro.autor }}</td>
+                <td>{{ livro.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'livros-update' livro.pk %}">Editar</a>
+                    <a href="{% url 'livros-delete' livro.pk %}">Apagar</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
