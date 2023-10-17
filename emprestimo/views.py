@@ -38,7 +38,8 @@ def emprestar_livro(request, pk):
         borrower=request.user, book=livro).exists()
 
     if emprestimo_existente:
-        messages.error(request, 'Você já solicitou empréstimo desse livro antes.')
+        messages.error(
+            request, 'Você já solicitou empréstimo desse livro antes.')
         return redirect('home')
     else:
         Emprestimo.objects.create(
@@ -93,7 +94,7 @@ class DeleteEmprestimo(LoginRequiredMixin, DeleteView):
             return False
 
     def handle_no_permission(self):
-        return redirect('meus-emprestimo')
+        return redirect('emprestimo')
 
 
 @login_required
