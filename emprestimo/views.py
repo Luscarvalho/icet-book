@@ -102,7 +102,6 @@ def devolver_emprestimo(request, emprestimo_id):
 
     if (request.user == emprestimo.borrower
             and emprestimo.status == 'approved'):
-
         emprestimo.book.status = 'devol'
         emprestimo.book.save()
 
